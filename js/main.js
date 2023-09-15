@@ -6,6 +6,10 @@ console.log("-------------------------------------");
 
 let opcion = parseInt(prompt("Elija una opción:"));
 
+function presupuestoIngresado(presupuesto){
+    console.log("su presupuesto es de: $" + presupuesto);
+}
+
 if (opcion == 1) {
     console.log("Selecciona las piezas que deseas comprar:");
     console.log("1 - Procesador $80.000");
@@ -61,20 +65,17 @@ if (opcion == 1) {
 
 else if (opcion == 2){
     let presupuesto = parseInt(prompt("Ingrese su presupuesto:"));
-    function presupuestoIngresado(){
-        console.log("su presupuesto es de: $" + presupuesto);
-    }
-
+    
     if(presupuesto <= 250000){
-        presupuestoIngresado();
+        presupuestoIngresado(presupuesto);
         console.log("Puede adquirir una computadora de gama baja");
     }
     else if(presupuesto >250000 && presupuesto < 500000){
-        presupuestoIngresado();
+        presupuestoIngresado(presupuesto);
         console.log("Puede adquirir una computadora de gama media");
     }
     else if(presupuesto >= 500000){
-        presupuestoIngresado();
+        presupuestoIngresado(presupuesto);
         console.log("Puede adquirir una computadora de gama alta");
     }
     else{
@@ -85,3 +86,4 @@ else if (opcion == 2){
 else {
     console.log("Número ingresado no válido");
 }
+
