@@ -11,6 +11,7 @@ function presupuestoIngresado(presupuesto){
     console.log("su presupuesto es de: $" + presupuesto);
 }
 
+
 let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000","3 - i7: $210.000"];
 let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000","3 - Z790: $215.000"];
 let arrayMemoriaRam = ["1 - DDR4 4gb: $14.000", "2 - DDR4 8gb: $25.000","3 - DDR4 16gb: $45.000"];
@@ -29,7 +30,7 @@ let computadoras = [
         fuenteDePoder: "550W",
         almacenamiento: "SSD 480gb",
         gabinete: "CORSAIR CARBIDE SPEC DELTA",
-        precio: "$400.000"
+        precio: 400000
     },
     {
         procesador: "i3 12100F",
@@ -39,7 +40,7 @@ let computadoras = [
         fuenteDePoder: "550W",
         almacenamiento: "SSD 480gb",
         gabinete: "Gamemax NOVA N6",
-        precio: "$620.000"
+        precio: 620000
     },
     {
         procesador: "Ryzen 5 7600",
@@ -49,7 +50,7 @@ let computadoras = [
         fuenteDePoder: "700w",
         almacenamiento: "SSD 960gb",
         gabinete: "Thermaltake TT S200",
-        precio: "$1.000.000"
+        precio: 1000000
     }
 ]
 
@@ -236,22 +237,10 @@ if (opcion == 1) {
 
 else if (opcion == 2){
     let presupuesto = parseInt(prompt("Ingrese su presupuesto:"));
-    
-    if(presupuesto <= 250000){
-        presupuestoIngresado(presupuesto);
-        console.log("Puede adquirir una computadora de gama baja");
-    }
-    else if(presupuesto >250000 && presupuesto < 500000){
-        presupuestoIngresado(presupuesto);
-        console.log("Puede adquirir una computadora de gama media");
-    }
-    else if(presupuesto >= 500000){
-        presupuestoIngresado(presupuesto);
-        console.log("Puede adquirir una computadora de gama alta");
-    }
-    else{
-        console.log("ERROR");
-    }
+    let buscarPrecio = computadoras.filter(computadora => computadora.precio <= presupuesto);
+    console.log("-------------------------");
+    console.log("Te recomendamos las siguientes PC:");
+    console.log(buscarPrecio);
 }
 
 else if (opcion == 3){
@@ -265,7 +254,7 @@ else if (opcion == 3){
         console.log("Fuente de poder: " + computadoras[i].fuenteDePoder);
         console.log("Almacenamiento: " + computadoras[i].almacenamiento);
         console.log("Gabinete: " + computadoras[i].gabinete);
-        console.log("Precio: " + computadoras[i].precio);
+        console.log("Precio: $" + computadoras[i].precio);
     }
     let pc = prompt("Seleccione una PC");
     if (pc == 1){
