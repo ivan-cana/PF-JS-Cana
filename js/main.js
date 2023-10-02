@@ -7,18 +7,44 @@ console.log("-------------------------------------");
 
 let opcion = parseInt(prompt("Elija una opción:"));
 
-function presupuestoIngresado(presupuesto){
-    console.log("su presupuesto es de: $" + presupuesto);
-}
+function opcion1(arrayDelProducto, nombreDelProducto, opcionDelProducto1, precioDeOpcion1, opcionDelProducto2, precioDeOpcion2, opcionDelProducto3, precioDeOpcion3) {
+    console.log("--------------------------------")
+    for (let i = 0; i < arrayDelProducto.length; i += 1) {
+        console.log(arrayDelProducto[i]);
+    }
+    opcionesDelProducto = parseInt(prompt("Seleccionar "+ nombreDelProducto));
+    if (opcionesDelProducto == 1) {
+        console.log(opcionDelProducto1 +" sumado al carrito")
+        carrito += precioDeOpcion1
+    }
+    else if (opcionesDelProducto == 2) {
+        console.log(opcionDelProducto2 +" sumado al carrito")
+        carrito += precioDeOpcion2
+    }
+    else if (opcionesDelProducto == 3) {
+        console.log(opcionDelProducto3 + " sumado al carrito")
+        carrito += precioDeOpcion3
+    }
+    else {
+        console.log("Opción no válida")
+    }
+};
+
+function opcion3(numero, precio) {
+    console.log("-------------------------");
+    console.log("PC " + numero + " agregada al carrito");
+    carrito += precio;
+    console.log("Resumen de su compra: $" + carrito);
+};
 
 
-let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000","3 - i7: $210.000"];
-let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000","3 - Z790: $215.000"];
-let arrayMemoriaRam = ["1 - DDR4 4gb: $14.000", "2 - DDR4 8gb: $25.000","3 - DDR4 16gb: $45.000"];
-let arrayPlacaDeVideo = ["1 - GTX 1650: $150.000", "2 - RTX 2060: $300.000","3 - RTX 3070: $500.000"];
-let arrayFuenteDePoder = ["1 - 500W: $35.000", "2 - 600W: $45.000","3 - 700W: $55.000"];
-let arrayDiscoDuro = ["1 - 1T: $45.000", "2 - 2T: $60.000","3 - 6T: $130.000"];
-let arrayGabinete = ["1 - Gabinete Antec NX201: $35.000", "2 - Gabinete Antec NX200M: $40.000","3 - Gabinete Antec NX292: $50.000"];
+let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000", "3 - i7: $210.000"];
+let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000", "3 - Z790: $215.000"];
+let arrayMemoriaRam = ["1 - DDR4 4gb: $14.000", "2 - DDR4 8gb: $25.000", "3 - DDR4 16gb: $45.000"];
+let arrayPlacaDeVideo = ["1 - GTX 1650: $150.000", "2 - RTX 2060: $300.000", "3 - RTX 3070: $500.000"];
+let arrayFuenteDePoder = ["1 - 500W: $35.000", "2 - 600W: $45.000", "3 - 700W: $55.000"];
+let arrayDiscoDuro = ["1 - 1T: $45.000", "2 - 2T: $60.000", "3 - 6T: $130.000"];
+let arrayGabinete = ["1 - Gabinete Antec NX201: $35.000", "2 - Gabinete Antec NX200M: $40.000", "3 - Gabinete Antec NX292: $50.000"];
 
 
 let computadoras = [
@@ -74,158 +100,25 @@ if (opcion == 1) {
 
         switch (opcionesDePiezas) {
             case 1:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayProcesadores.length; i+=1){
-                    console.log(arrayProcesadores[i]);
-                }
-                opcionesDeProcesadores = parseInt(prompt("Seleccionar Procesador"));
-                if (opcionesDeProcesadores == 1){
-                    console.log("i3 sumado al carrito")
-                    carrito += 60000
-                }
-                else if(opcionesDeProcesadores == 2){
-                    console.log("i5 sumado al carrito")
-                    carrito += 110000
-                }
-                else if (opcionesDeProcesadores == 3){
-                    console.log("i7 sumado al carrito")
-                    carrito += 210000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayProcesadores, "Procesador", "i3", 60000, "i5", 110000, "i7", 210000);
                 break;
             case 2:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayPlacaBase.length; i+=1){
-                    console.log(arrayPlacaBase[i]);
-                }
-                opcionesDePlacaBase = parseInt(prompt("Seleccionar Placa Base"));
-                if (opcionesDePlacaBase == 1){
-                    console.log("H610M sumado al carrito")
-                    carrito += 94000
-                }
-                else if(opcionesDePlacaBase == 2){
-                    console.log("B660M sumado al carrito")
-                    carrito += 112000
-                }
-                else if (opcionesDePlacaBase == 3){
-                    console.log("Z790 sumado al carrito")
-                    carrito += 215000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayPlacaBase, "Placa Base", "H610M", 94000, "B660M", 112000, "Z790", 215000);
                 break;
             case 3:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayMemoriaRam.length; i+=1){
-                    console.log(arrayMemoriaRam[i]);
-                }
-                opcionesDeMemoriaRam = parseInt(prompt("Seleccionar Procesador"));
-                if (opcionesDeMemoriaRam == 1){
-                    console.log("DDR4 4gb sumado al carrito")
-                    carrito += 14000
-                }
-                else if(opcionesDeMemoriaRam == 2){
-                    console.log("DDR4 8gb sumado al carrito")
-                    carrito += 25000
-                }
-                else if (opcionesDeMemoriaRam == 3){
-                    console.log("DDR4 16gb sumado al carrito")
-                    carrito += 45000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayMemoriaRam, "Memoria Ram", "DDR4 4gb", 14000, "DDR4 8gb", 25000, "DDR4 16gb", 45000);
                 break;
             case 4:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayPlacaDeVideo.length; i+=1){
-                    console.log(arrayPlacaDeVideo[i]);
-                }
-                opcionesPlacaDeVideo = parseInt(prompt("Seleccionar Procesador"));
-                if (opcionesPlacaDeVideo == 1){
-                    console.log("GTX 1650 sumado al carrito")
-                    carrito += 150000
-                }
-                else if(opcionesPlacaDeVideo == 2){
-                    console.log("RTX 2060 sumado al carrito")
-                    carrito += 300000
-                }
-                else if (opcionesPlacaDeVideo == 3){
-                    console.log("RTX 3070 sumado al carrito")
-                    carrito += 500000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayPlacaDeVideo, "Placa de video", "GTX 1650", 150000, "RTX 2060", 300000, "RTX 3070", 500000);
                 break;
             case 5:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayFuenteDePoder.length; i+=1){
-                    console.log(arrayFuenteDePoder[i]);
-                }
-                opcionesFuenteDePoder = parseInt(prompt("Seleccionar Procesador"));
-                if (opcionesFuenteDePoder == 1){
-                    console.log("500W sumado al carrito")
-                    carrito += 35000
-                }
-                else if(opcionesFuenteDePoder == 2){
-                    console.log("600W sumado al carrito")
-                    carrito += 45000
-                }
-                else if (opcionesFuenteDePoder == 3){
-                    console.log("700W sumado al carrito")
-                    carrito += 55000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayFuenteDePoder, "Fuente de poder", "500W", 35000, "600W", 45000, "700W", 55000);
                 break;
             case 6:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayDiscoDuro.length; i+=1){
-                    console.log(arrayDiscoDuro[i]);
-                }
-                opcionesDiscoDuro = parseInt(prompt("Seleccionar Procesador"));
-                if (opcionesDiscoDuro == 1){
-                    console.log("1T sumado al carrito")
-                    carrito += 45000
-                }
-                else if(opcionesDiscoDuro == 2){
-                    console.log("2T sumado al carrito")
-                    carrito += 60000
-                }
-                else if (opcionesDiscoDuro == 3){
-                    console.log("6T sumado al carrito")
-                    carrito += 130000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayDiscoDuro, "Disco Duro", "1T", 45000, "2T", 60000, "6T", 130000);
                 break;
             case 7:
-                console.log("--------------------------------")
-                for (let i = 0; i < arrayGabinete.length; i+=1){
-                    console.log(arrayGabinete[i]);
-                }
-                opcionesGabinete = parseInt(prompt("Seleccionar Procesador"));
-                if (opcionesGabinete == 1){
-                    console.log("Gabinete Antec NX201 sumado al carrito")
-                    carrito += 35000
-                }
-                else if(opcionesGabinete == 2){
-                    console.log("Gabinete Antec NX200M sumado al carrito")
-                    carrito += 40000
-                }
-                else if (opcionesGabinete == 3){
-                    console.log("Gabinete Antec NX292 sumado al carrito")
-                    carrito += 50000
-                }
-                else {
-                    console.log("Opción no válida")
-                }
+                opcion1(arrayGabinete, "Gabinete", "Gabinete Antec NX201", 35000, "Gabinete Antec NX200M", 40000, "Gabinete Antec NX292", 50000);
                 break;
             case 8:
                 console.log("--------------------------------")
@@ -235,7 +128,7 @@ if (opcion == 1) {
     }
 }
 
-else if (opcion == 2){
+else if (opcion == 2) {
     let presupuesto = parseInt(prompt("Ingrese su presupuesto:"));
     let buscarPrecio = computadoras.filter(computadora => computadora.precio <= presupuesto);
     console.log("-------------------------");
@@ -243,8 +136,8 @@ else if (opcion == 2){
     console.log(buscarPrecio);
 }
 
-else if (opcion == 3){
-    for (let i = 0; i < computadoras.length; i += 1){
+else if (opcion == 3) {
+    for (let i = 0; i < computadoras.length; i += 1) {
         console.log("-------------------------");
         console.log("PC " + (i + 1));
         console.log("Procesador: " + computadoras[i].procesador);
@@ -257,25 +150,16 @@ else if (opcion == 3){
         console.log("Precio: $" + computadoras[i].precio);
     }
     let pc = prompt("Seleccione una PC");
-    if (pc == 1){
-        console.log("-------------------------");
-        console.log("PC 1 agregada al carrito");
-        carrito += 400000;
-        console.log("Resumen de su compra: $" + carrito);
+    if (pc == 1) {
+        opcion3(1, 400000);
     }
-    else if (pc == 2){
-        console.log("-------------------------");
-        console.log("PC 2 agregada al carrito");
-        carrito += 620000;
-        console.log("Resumen de su compra: $" + carrito);
+    else if (pc == 2) {
+        opcion3(2, 620000);
     }
-    else if (pc == 3){
-        console.log("-------------------------");
-        console.log("PC 3 agregada al carrito");
-        carrito += 1000000;
-        console.log("Resumen de su compra: $" + carrito);
+    else if (pc == 3) {
+        opcion3(3, 1000000);
     }
-    else{
+    else {
         console.log("Opción no válida");
     }
 }
