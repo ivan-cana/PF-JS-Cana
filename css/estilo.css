@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #8BB5F0;
+    background-color: #5D6D7E;
 }
 
 h1 {
@@ -17,4 +17,138 @@ h1 {
     align-items: center;
     margin: 0;
     padding: 0;
+}
+
+.secciones {
+    border-top: 2px solid black;
+}
+
+.tituloDeLasSecciones {
+    text-align: center;
+    font-size: 50px;
+    text-decoration: underline;
+}
+
+.descripcion {
+    text-indent: 15px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.contenedorDePiezas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    padding: 0;
+}
+
+.piezas {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    height: auto;
+    width: auto;
+    border: 2px solid #96640C;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.imgPieza {
+    width: 100px;
+    height: auto;
+    padding-top: 5px;
+}
+
+.nombrePieza {
+    text-align: center;
+    width: 100%;
+}
+
+.opcionesPieza {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.listaPiezas {
+    padding: 0;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.campo{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    border: #96640C solid 2px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.btnBuscar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton {
+    background-color: #96640C;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100px;
+}
+
+.msgPc {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    border: #96640C solid 2px;
+    margin-bottom: 30px;
+}
+
+.noEncontrada {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    border: #96640C solid 2px;
+    margin-bottom: 30px;
+}
+
+.computadoras {
+    width: 80%;
+    text-align: center;
+    border: #96640C solid 2px;
+    border-radius: 2px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.imgPc {
+    width: auto;
+    height: 200px;
+}
+
+.pc {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.detalles {
+    font-weight: bold;
+    font-size: 20px;
 }

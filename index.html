@@ -3,14 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GameTech Store</title>
+    <link rel="shortcut icon" href="img/computadora.png" type="image/x-icon">
+    <!-- CSS -->
     <link rel="stylesheet" href="css/estilo.css">
+    <!-- JS -->
     <script src="js/main.js" defer></script>
 </head>
 <body>
-    <h1>Presupuesto de Computadora</h1>
+    <h1>GameTech Store</h1>
     
     <img src="img/computadora.png" alt="computadora" class="computadora">
 
+    <section class="secciones">
+        <h2 class="tituloDeLasSecciones">Piezas</h2>
+        <p class="descripcion">Seleccione las piezas que desea adquirir.</p>
+        <ul class="contenedorDePiezas">
+            <li class="piezas" id="procesador">
+                <img class="imgPieza" src="img/procesador.png" alt="imagen de un procesador">
+                <p class="nombrePieza">Procesador</p>
+            </li>
+            <li class="piezas" id="placaBase">
+                <img class="imgPieza" src="img/placa-base.png" alt="imagen de una placa base">
+                <p class="nombrePieza">Placa Base</p>
+            </li>
+            <li class="piezas" id="memoriaRam">
+                <img class="imgPieza" src="img/memoria-ram.png" alt="imagen de una memoria ram">
+                <p class="nombrePieza">Memoria Ram</p>
+            </li>
+            <li class="piezas" id="placaDeVideo">
+                <img class="imgPieza" src="img/placa-de-video.png" alt="imagen de una placa de video">
+                <p class="nombrePieza">Placa de video</p>
+            </li>
+            <li class="piezas" id="fuenteDePoder">
+                <img class="imgPieza" src="img/fuente-de-poder.png" alt="imagen de una fuente de poder">
+                <p class="nombrePieza">Fuente de poder</p>
+            </li>
+            <li class="piezas" id="almacenamiento">
+                <img class="imgPieza" src="img/disco-duro.png" alt="imagen de un disco duro">
+                <p class="nombrePieza">Almacenamiento</p>
+            </li>
+            <li class="piezas" id="gabinete">
+                <img class="imgPieza" src="img/gabinete.png" alt="imagen de un gabinete">
+                <p class="nombrePieza">Gabinete</p>
+            </li>
+        </ul>
+        <div class="opcionesPieza">
+            <ul class="listaPiezas" id="opcionesPieza"></ul>
+        </div>
+    </section>
+
+    <section class="secciones">
+        <h2 class="tituloDeLasSecciones">Ingresar presupuesto</h2>
+        <p class="descripcion">Ingrese su presupuesto y nosotros le mostraremos las computadoras que mejor se adapten a su presupuesto.</p>
+        <form class="formulario">
+            <label class="ingresarPresupuesto" for="presupuesto">Ingrese su presupuesto:</label>
+            <input class="campo" type="number" id="presupuesto">
+            <div class="btnBuscar">
+                <button class="boton">Buscar PC</button>
+            </div>
+            <div id="pcEncontrada"></div>
+        </form>
+    </section>
+
+    <section class="secciones">
+        <h2 class="tituloDeLasSecciones">Computadoras armadas</h2>
+        <p class="descripcion">Computadoras pre-ensambladas por nostros. Cuenta con sistema operativo ya instalado para que apenas la tenga pueda comenzar a usarla.</p>
+        <div class="seccionPC">
+            <div class="computadoras" id="1">
+                <img class="imgPc" src="img/pc1.png" alt="Imagen de una pc">
+                <p class="pc">PC 1</p>
+                <p class="detalles"></p>
+            </div>
+            <div class="computadoras" id="2">
+                <img class="imgPc" src="img/pc2.png" alt="Imagen de una pc">
+                <p class="pc">PC 2</p>
+                <p class="detalles"></p>
+            </div>
+            <div class="computadoras" id="3">
+                <img class="imgPc" src="img/pc3.png" alt="Imagen de una pc">
+                <p class="pc">PC 3</p>
+                <p class="detalles"></p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

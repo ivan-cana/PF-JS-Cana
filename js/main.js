@@ -1,53 +1,19 @@
-console.log("Bienvenido!");
-console.log("Por favor seleccione una de las opciones:");
-console.log("1 - Elegir piezas");
-console.log("2 - Ingresar un presupuesto");
-console.log("3 - Comprar PC armada")
-console.log("-------------------------------------");
+let carrito = [1,2,3];
 
-let opcion = parseInt(prompt("Elija una opción:"));
-
-function opcion1(arrayDelProducto, nombreDelProducto, opcionDelProducto1, precioDeOpcion1, opcionDelProducto2, precioDeOpcion2, opcionDelProducto3, precioDeOpcion3) {
-    console.log("--------------------------------")
-    for (let i = 0; i < arrayDelProducto.length; i += 1) {
-        console.log(arrayDelProducto[i]);
-    }
-    opcionesDelProducto = parseInt(prompt("Seleccionar "+ nombreDelProducto));
-    if (opcionesDelProducto == 1) {
-        console.log(opcionDelProducto1 +" sumado al carrito")
-        carrito += precioDeOpcion1
-    }
-    else if (opcionesDelProducto == 2) {
-        console.log(opcionDelProducto2 +" sumado al carrito")
-        carrito += precioDeOpcion2
-    }
-    else if (opcionesDelProducto == 3) {
-        console.log(opcionDelProducto3 + " sumado al carrito")
-        carrito += precioDeOpcion3
-    }
-    else {
-        console.log("Opción no válida")
-    }
-};
-
-function opcion3(numero, precio) {
-    console.log("-------------------------");
-    console.log("PC " + numero + " agregada al carrito");
-    carrito += precio;
-    console.log("Resumen de su compra: $" + carrito);
-};
-
+localStorage.setItem('carrito', JSON.stringify(carrito));
+let carritoEnLs= localStorage.getItem('carrito');
+carritoEnLs = JSON.parse(carritoEnLs);
+//Esto lo voy a usar para agregar un apartado de carrito en el proyecto final.
 
 let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000", "3 - i7: $210.000"];
 let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000", "3 - Z790: $215.000"];
 let arrayMemoriaRam = ["1 - DDR4 4gb: $14.000", "2 - DDR4 8gb: $25.000", "3 - DDR4 16gb: $45.000"];
 let arrayPlacaDeVideo = ["1 - GTX 1650: $150.000", "2 - RTX 2060: $300.000", "3 - RTX 3070: $500.000"];
 let arrayFuenteDePoder = ["1 - 500W: $35.000", "2 - 600W: $45.000", "3 - 700W: $55.000"];
-let arrayDiscoDuro = ["1 - 1T: $45.000", "2 - 2T: $60.000", "3 - 6T: $130.000"];
+let arrayAlmacenamiento = ["1 - 1T: $45.000", "2 - 2T: $60.000", "3 - 6T: $130.000"];
 let arrayGabinete = ["1 - Gabinete Antec NX201: $35.000", "2 - Gabinete Antec NX200M: $40.000", "3 - Gabinete Antec NX292: $50.000"];
 
-
-let computadoras = [
+let pc = [
     {
         procesador: "Ryzen 3 3200g",
         placaBase: "Asus A520",
@@ -80,91 +46,114 @@ let computadoras = [
     }
 ]
 
-let carrito = 0;
+// Seccion Piezas
 
-if (opcion == 1) {
-    console.log("Selecciona las piezas que deseas comprar:");
-    console.log("1 - Procesador");
-    console.log("2 - Placa base");
-    console.log("3 - Memoria Ram");
-    console.log("4 - Placa de video");
-    console.log("5 - Fuente de poder");
-    console.log("6 - Disco duro");
-    console.log("7 - Gabinete");
-    console.log("8 - Salir");
+const opcionesPieza = document.getElementById("opcionesPieza");
+const piezas = document.querySelectorAll('.piezas');
 
-    let opcionesDePiezas = 0;
+piezas.forEach((pieza) => {
+    pieza.addEventListener('click', () => {
+        let arrayOpciones = [];
+    switch (pieza.id) {
+        case "procesador":
+            arrayOpciones = arrayProcesadores;
+            break;
+        case "placaBase":
+            arrayOpciones = arrayPlacaBase;
+            break;
+        case "memoriaRam":
+            arrayOpciones = arrayMemoriaRam;
+            break;
+        case "placaDeVideo":
+            arrayOpciones = arrayPlacaDeVideo;
+            break;
+        case "fuenteDePoder":
+            arrayOpciones = arrayFuenteDePoder;
+            break;
+        case "almacenamiento":
+            arrayOpciones = arrayAlmacenamiento;
+            break;
+        case "gabinete":
+            arrayOpciones = arrayGabinete;
+            break;
+    }
 
-    while (opcionesDePiezas !== 8) {
-        opcionesDePiezas = parseInt(prompt("Seleccione las piezas que desea adquirir"));
+    const mostrarPiezas = arrayOpciones.map(opcion => `<p>${opcion}</p>`).join("");
+    opcionesPieza.innerHTML = mostrarPiezas;
+    });
+});
 
-        switch (opcionesDePiezas) {
-            case 1:
-                opcion1(arrayProcesadores, "Procesador", "i3", 60000, "i5", 110000, "i7", 210000);
-                break;
-            case 2:
-                opcion1(arrayPlacaBase, "Placa Base", "H610M", 94000, "B660M", 112000, "Z790", 215000);
-                break;
-            case 3:
-                opcion1(arrayMemoriaRam, "Memoria Ram", "DDR4 4gb", 14000, "DDR4 8gb", 25000, "DDR4 16gb", 45000);
-                break;
-            case 4:
-                opcion1(arrayPlacaDeVideo, "Placa de video", "GTX 1650", 150000, "RTX 2060", 300000, "RTX 3070", 500000);
-                break;
-            case 5:
-                opcion1(arrayFuenteDePoder, "Fuente de poder", "500W", 35000, "600W", 45000, "700W", 55000);
-                break;
-            case 6:
-                opcion1(arrayDiscoDuro, "Disco Duro", "1T", 45000, "2T", 60000, "6T", 130000);
-                break;
-            case 7:
-                opcion1(arrayGabinete, "Gabinete", "Gabinete Antec NX201", 35000, "Gabinete Antec NX200M", 40000, "Gabinete Antec NX292", 50000);
-                break;
-            case 8:
-                console.log("--------------------------------")
-                console.log("Resumen de su compra: $" + carrito);
-                break;
-        }
+// Seccion Ingresar Presupuesto
+
+const formulario = document.querySelector('.formulario');
+const pcEncontrada = document.querySelector('#pcEncontrada');
+
+function mostrarPcFiltrada(pcs){
+    pcEncontrada.innerHTML = '';
+
+    if (pcs.length > 0){
+        pcs.forEach(pc => {
+            const pcContenedor = document.createElement('div');
+            pcContenedor.classList.add('msgPc');
+    
+            const pcTitulo = document.createElement('p');
+            pcTitulo.textContent = 'PC';
+    
+            const pcPrecio = document.createElement('p');
+            pcPrecio.textContent = `Precio: $${pc.precio}`;
+    
+            const pcComponentes = document.createElement('p');
+            pcComponentes.innerHTML = `<p>Procesador: ${pc.procesador}</p>
+            <p>Placa Base: ${pc.placaBase}</p>
+            <p>Memoria RAM: ${pc.memoriaRam}</p>
+            <p>Placa de Video: ${pc.placaDeVideo}</p>
+            <p>Fuente de Poder: ${pc.fuenteDePoder}</p>
+            <p>Almacenamiento: ${pc.almacenamiento}</p>
+            <p>Gabinete: ${pc.gabinete}</p>`
+    
+            pcContenedor.appendChild(pcTitulo);
+            pcContenedor.appendChild(pcPrecio);
+            pcContenedor.appendChild(pcComponentes);
+            pcEncontrada.appendChild(pcContenedor);
+        });
+    }
+    else{
+        const noEncontrada = document.createElement('p');
+        noEncontrada.classList.add('noEncontrada');
+        noEncontrada.textContent = 'No encontramos una PC que se adapte a su presupuesto.';
+        pcEncontrada.appendChild(noEncontrada);
     }
 }
 
-else if (opcion == 2) {
-    let presupuesto = parseInt(prompt("Ingrese su presupuesto:"));
-    let buscarPrecio = computadoras.filter(computadora => computadora.precio <= presupuesto);
-    console.log("-------------------------");
-    console.log("Te recomendamos las siguientes PC:");
-    console.log(buscarPrecio);
-}
+function buscarPc(evt){
+    evt.preventDefault();
+    let presupuesto = parseInt(document.querySelector('.campo').value);
+    const precioFiltrado = pc.filter(valor => valor.precio <= presupuesto);
+    mostrarPcFiltrada(precioFiltrado);
+    formulario.reset();
+};
 
-else if (opcion == 3) {
-    for (let i = 0; i < computadoras.length; i += 1) {
-        console.log("-------------------------");
-        console.log("PC " + (i + 1));
-        console.log("Procesador: " + computadoras[i].procesador);
-        console.log("Placa Base: " + computadoras[i].placaBase);
-        console.log("Memoria RAM: " + computadoras[i].memoriaRam);
-        console.log("Placa de video: " + computadoras[i].placaDeVideo);
-        console.log("Fuente de poder: " + computadoras[i].fuenteDePoder);
-        console.log("Almacenamiento: " + computadoras[i].almacenamiento);
-        console.log("Gabinete: " + computadoras[i].gabinete);
-        console.log("Precio: $" + computadoras[i].precio);
-    }
-    let pc = prompt("Seleccione una PC");
-    if (pc == 1) {
-        opcion3(1, 400000);
-    }
-    else if (pc == 2) {
-        opcion3(2, 620000);
-    }
-    else if (pc == 3) {
-        opcion3(3, 1000000);
-    }
-    else {
-        console.log("Opción no válida");
-    }
-}
+formulario.addEventListener('submit', buscarPc);
 
-else {
-    console.log("Número ingresado no válido");
-}
+// Seccion Computadoras Armadas
 
+const computadoras = document.querySelectorAll(".computadoras");
+
+computadoras.forEach((item, index) => {
+    item.addEventListener("click", () => {
+        const pcSeleccionada = pc[index];
+
+        const detalles = item.querySelector(".detalles");
+
+        detalles.innerHTML = `
+            <p>Procesador: ${pcSeleccionada.procesador}</p>
+            <p>Placa Base: ${pcSeleccionada.placaBase}</p>
+            <p>Memoria RAM: ${pcSeleccionada.memoriaRam}</p>
+            <p>Placa de Video: ${pcSeleccionada.placaDeVideo}</p>
+            <p>Fuente de Poder: ${pcSeleccionada.fuenteDePoder}</p>
+            <p>Almacenamiento: ${pcSeleccionada.almacenamiento}</p>
+            <p>Gabinete: ${pcSeleccionada.gabinete}</p>
+            <p>Precio: $${pcSeleccionada.precio}</p>
+        `;
+    });
+});
