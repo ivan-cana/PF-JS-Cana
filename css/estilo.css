@@ -151,4 +151,16 @@ h1 {
 .detalles {
     font-weight: bold;
     font-size: 20px;
+    cursor: default;
+}
+
+.btnAgregarCarrito {
+    background-color: #96640C;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
 }

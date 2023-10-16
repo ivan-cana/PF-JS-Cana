@@ -1,9 +1,8 @@
-let carrito = [1,2,3];
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 localStorage.setItem('carrito', JSON.stringify(carrito));
-let carritoEnLs= localStorage.getItem('carrito');
+let carritoEnLs = localStorage.getItem('carrito');
 carritoEnLs = JSON.parse(carritoEnLs);
-//Esto lo voy a usar para agregar un apartado de carrito en el proyecto final.
 
 let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000", "3 - i7: $210.000"];
 let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000", "3 - Z790: $215.000"];
@@ -15,6 +14,7 @@ let arrayGabinete = ["1 - Gabinete Antec NX201: $35.000", "2 - Gabinete Antec NX
 
 let pc = [
     {
+        nombre: "PC 1",
         procesador: "Ryzen 3 3200g",
         placaBase: "Asus A520",
         memoriaRam: "8gb",
@@ -25,6 +25,7 @@ let pc = [
         precio: 400000
     },
     {
+        nombre: "PC 2",
         procesador: "i3 12100F",
         placaBase: "MSI H610M",
         memoriaRam: "16gb",
@@ -35,6 +36,7 @@ let pc = [
         precio: 620000
     },
     {
+        nombre: "PC 3",
         procesador: "Ryzen 5 7600",
         placaBase: "Gigabyte A620M",
         memoriaRam: "16gb",
@@ -46,6 +48,12 @@ let pc = [
     }
 ]
 
+function agregarCarrito(a, b) {
+    carrito.push("Producto: " + a + " | " + "Precio: " + b);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    console.log(carrito);
+};
+
 // Seccion Piezas
 
 const opcionesPieza = document.getElementById("opcionesPieza");
@@ -54,32 +62,32 @@ const piezas = document.querySelectorAll('.piezas');
 piezas.forEach((pieza) => {
     pieza.addEventListener('click', () => {
         let arrayOpciones = [];
-    switch (pieza.id) {
-        case "procesador":
-            arrayOpciones = arrayProcesadores;
-            break;
-        case "placaBase":
-            arrayOpciones = arrayPlacaBase;
-            break;
-        case "memoriaRam":
-            arrayOpciones = arrayMemoriaRam;
-            break;
-        case "placaDeVideo":
-            arrayOpciones = arrayPlacaDeVideo;
-            break;
-        case "fuenteDePoder":
-            arrayOpciones = arrayFuenteDePoder;
-            break;
-        case "almacenamiento":
-            arrayOpciones = arrayAlmacenamiento;
-            break;
-        case "gabinete":
-            arrayOpciones = arrayGabinete;
-            break;
-    }
+        switch (pieza.id) {
+            case "procesador":
+                arrayOpciones = arrayProcesadores;
+                break;
+            case "placaBase":
+                arrayOpciones = arrayPlacaBase;
+                break;
+            case "memoriaRam":
+                arrayOpciones = arrayMemoriaRam;
+                break;
+            case "placaDeVideo":
+                arrayOpciones = arrayPlacaDeVideo;
+                break;
+            case "fuenteDePoder":
+                arrayOpciones = arrayFuenteDePoder;
+                break;
+            case "almacenamiento":
+                arrayOpciones = arrayAlmacenamiento;
+                break;
+            case "gabinete":
+                arrayOpciones = arrayGabinete;
+                break;
+        }
 
-    const mostrarPiezas = arrayOpciones.map(opcion => `<p>${opcion}</p>`).join("");
-    opcionesPieza.innerHTML = mostrarPiezas;
+        const mostrarPiezas = arrayOpciones.map(opcion => `<p>${opcion}</p>`).join("");
+        opcionesPieza.innerHTML = mostrarPiezas;
     });
 });
 
@@ -88,20 +96,20 @@ piezas.forEach((pieza) => {
 const formulario = document.querySelector('.formulario');
 const pcEncontrada = document.querySelector('#pcEncontrada');
 
-function mostrarPcFiltrada(pcs){
+function mostrarPcFiltrada(pcs) {
     pcEncontrada.innerHTML = '';
 
-    if (pcs.length > 0){
+    if (pcs.length > 0) {
         pcs.forEach(pc => {
             const pcContenedor = document.createElement('div');
             pcContenedor.classList.add('msgPc');
-    
+
             const pcTitulo = document.createElement('p');
             pcTitulo.textContent = 'PC';
-    
+
             const pcPrecio = document.createElement('p');
             pcPrecio.textContent = `Precio: $${pc.precio}`;
-    
+
             const pcComponentes = document.createElement('p');
             pcComponentes.innerHTML = `<p>Procesador: ${pc.procesador}</p>
             <p>Placa Base: ${pc.placaBase}</p>
@@ -110,14 +118,24 @@ function mostrarPcFiltrada(pcs){
             <p>Fuente de Poder: ${pc.fuenteDePoder}</p>
             <p>Almacenamiento: ${pc.almacenamiento}</p>
             <p>Gabinete: ${pc.gabinete}</p>`
-    
+
             pcContenedor.appendChild(pcTitulo);
             pcContenedor.appendChild(pcPrecio);
             pcContenedor.appendChild(pcComponentes);
+
+            const btnAgregarCarrito = document.createElement('button');
+            btnAgregarCarrito.classList.add('btnAgregarCarrito');
+            btnAgregarCarrito.textContent = 'Agregar al carrito';
+
+            btnAgregarCarrito.addEventListener('click', () => {
+                agregarCarrito(pc.nombre, pc.precio);
+            });
+
+            pcContenedor.appendChild(btnAgregarCarrito);
             pcEncontrada.appendChild(pcContenedor);
         });
     }
-    else{
+    else {
         const noEncontrada = document.createElement('p');
         noEncontrada.classList.add('noEncontrada');
         noEncontrada.textContent = 'No encontramos una PC que se adapte a su presupuesto.';
@@ -125,7 +143,7 @@ function mostrarPcFiltrada(pcs){
     }
 }
 
-function buscarPc(evt){
+function buscarPc(evt) {
     evt.preventDefault();
     let presupuesto = parseInt(document.querySelector('.campo').value);
     const precioFiltrado = pc.filter(valor => valor.precio <= presupuesto);
@@ -146,6 +164,7 @@ computadoras.forEach((item, index) => {
         const detalles = item.querySelector(".detalles");
 
         detalles.innerHTML = `
+            <p>${pcSeleccionada.nombre}</p>
             <p>Procesador: ${pcSeleccionada.procesador}</p>
             <p>Placa Base: ${pcSeleccionada.placaBase}</p>
             <p>Memoria RAM: ${pcSeleccionada.memoriaRam}</p>
@@ -154,6 +173,14 @@ computadoras.forEach((item, index) => {
             <p>Almacenamiento: ${pcSeleccionada.almacenamiento}</p>
             <p>Gabinete: ${pcSeleccionada.gabinete}</p>
             <p>Precio: $${pcSeleccionada.precio}</p>
+            <button class= "btnAgregarCarrito">Agregar al carrito</button>
         `;
+
+        const btnAgregarCarrito = item.querySelector('.btnAgregarCarrito');
+
+        btnAgregarCarrito.addEventListener('click', () => {
+            agregarCarrito(pcSeleccionada.nombre, pcSeleccionada.precio);
+        });
     });
 });
+
