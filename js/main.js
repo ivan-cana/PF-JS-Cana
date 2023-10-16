@@ -51,7 +51,6 @@ let pc = [
 function agregarCarrito(a, b) {
     carrito.push("Producto: " + a + " | " + "Precio: " + b);
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    console.log(carrito);
 };
 
 // Seccion Piezas
