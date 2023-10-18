@@ -19,6 +19,35 @@ h1 {
     padding: 0;
 }
 
+.carrito{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.carritoImg {
+    height: 100px;
+    cursor: pointer;
+}
+
+.contenedorCarrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.seccionCarrito {
+    width: 80%;
+    border: #96640C 2px solid;
+    padding: 15px;
+}
+
+.listadoCarrito {
+    font-weight: bold;
+    font-size: 20px;
+    list-style-type: none;
+}
 .secciones {
     border-top: 2px solid black;
 }

@@ -1,9 +1,3 @@
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-localStorage.setItem('carrito', JSON.stringify(carrito));
-let carritoEnLs = localStorage.getItem('carrito');
-carritoEnLs = JSON.parse(carritoEnLs);
-
 let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000", "3 - i7: $210.000"];
 let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000", "3 - Z790: $215.000"];
 let arrayMemoriaRam = ["1 - DDR4 4gb: $14.000", "2 - DDR4 8gb: $25.000", "3 - DDR4 16gb: $45.000"];
@@ -48,10 +42,55 @@ let pc = [
     }
 ]
 
+// Carrito
+
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+localStorage.setItem('carrito', JSON.stringify(carrito));
+let carritoEnLs = localStorage.getItem('carrito');
+carritoEnLs = JSON.parse(carritoEnLs);
+
 function agregarCarrito(a, b) {
     carrito.push("Producto: " + a + " | " + "Precio: " + b);
     localStorage.setItem('carrito', JSON.stringify(carrito));
 };
+
+const carritoImg = document.querySelector('.carritoImg');
+const contenedorCarrito = document.querySelector('.contenedorCarrito');
+let seccionCarrito;
+
+function mostrarCarrito() {
+    let carritoObtenido = localStorage.getItem('carrito');
+    carritoObtenido = JSON.parse(carritoObtenido);
+
+    if (!seccionCarrito) {
+        seccionCarrito = document.createElement('ul');
+        seccionCarrito.classList.add('seccionCarrito');
+        contenedorCarrito.appendChild(seccionCarrito);
+    }
+    else {
+        while (seccionCarrito.firstChild){
+            seccionCarrito.removeChild(seccionCarrito.firstChild);
+        }
+    }
+
+    if (carritoObtenido.length > 0) {
+        carritoObtenido.forEach(function (productoCarrito) {
+            const listadoCarrito = document.createElement('li');
+            listadoCarrito.classList.add('listadoCarrito');
+            listadoCarrito.textContent = productoCarrito;
+            seccionCarrito.appendChild(listadoCarrito);
+        });
+    }
+    else {
+        const listadoCarrito = document.createElement('li');
+        listadoCarrito.classList.add('listadoCarrito');
+        listadoCarrito.textContent = "El carrito está vacio";
+        seccionCarrito.appendChild(listadoCarrito);
+    }
+}
+
+carritoImg.addEventListener('click', mostrarCarrito);
 
 // Seccion Piezas
 
