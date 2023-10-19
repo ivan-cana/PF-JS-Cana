@@ -48,6 +48,17 @@ h1 {
     font-size: 20px;
     list-style-type: none;
 }
+
+.btnBorrarCarrito{
+    background-color: #96640C;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    width: 120px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 .secciones {
     border-top: 2px solid black;
 }

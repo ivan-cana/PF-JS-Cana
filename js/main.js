@@ -58,6 +58,12 @@ function agregarCarrito(a, b) {
 const carritoImg = document.querySelector('.carritoImg');
 const contenedorCarrito = document.querySelector('.contenedorCarrito');
 let seccionCarrito;
+let btnBorrarCarrito;
+
+function borrarCarrito() {
+    localStorage.clear();
+    location.reload();
+}
 
 function mostrarCarrito() {
     let carritoObtenido = localStorage.getItem('carrito');
@@ -69,7 +75,7 @@ function mostrarCarrito() {
         contenedorCarrito.appendChild(seccionCarrito);
     }
     else {
-        while (seccionCarrito.firstChild){
+        while (seccionCarrito.firstChild) {
             seccionCarrito.removeChild(seccionCarrito.firstChild);
         }
     }
@@ -81,6 +87,11 @@ function mostrarCarrito() {
             listadoCarrito.textContent = productoCarrito;
             seccionCarrito.appendChild(listadoCarrito);
         });
+        btnBorrarCarrito = document.createElement('button');
+        btnBorrarCarrito.classList.add('btnBorrarCarrito');
+        seccionCarrito.appendChild(btnBorrarCarrito);
+        btnBorrarCarrito.textContent = "Vaciar carrito";
+        btnBorrarCarrito.addEventListener('click', borrarCarrito);
     }
     else {
         const listadoCarrito = document.createElement('li');
@@ -91,6 +102,7 @@ function mostrarCarrito() {
 }
 
 carritoImg.addEventListener('click', mostrarCarrito);
+
 
 // Seccion Piezas
 
