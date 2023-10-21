@@ -136,7 +136,7 @@ piezas.forEach((pieza) => {
                 break;
         }
 
-        const mostrarPiezas = arrayOpciones.map(opcion => `<p>${opcion}</p>`).join("");
+        const mostrarPiezas = arrayOpciones.map(opcion => `<p class= "opcionPiezaElejida">${opcion}</p>`).join("");
         opcionesPieza.innerHTML = mostrarPiezas;
     });
 });
@@ -206,14 +206,19 @@ formulario.addEventListener('submit', buscarPc);
 // Seccion Computadoras Armadas
 
 const computadoras = document.querySelectorAll(".computadoras");
+const detalles = document.querySelectorAll(".detalles");
 
 computadoras.forEach((item, index) => {
-    item.addEventListener("click", () => {
+    item.addEventListener('click', () => {
         const pcSeleccionada = pc[index];
 
-        const detalles = item.querySelector(".detalles");
+        detalles.forEach(detalle => {
+            detalle.style.display = 'none';
+        });
 
-        detalles.innerHTML = `
+        const detallesSeleccionados = detalles[index];
+
+        detallesSeleccionados.innerHTML = `
             <p>${pcSeleccionada.nombre}</p>
             <p>Procesador: ${pcSeleccionada.procesador}</p>
             <p>Placa Base: ${pcSeleccionada.placaBase}</p>
@@ -226,6 +231,8 @@ computadoras.forEach((item, index) => {
             <button class= "btnAgregarCarrito">Agregar al carrito</button>
         `;
 
+        detallesSeleccionados.style.display = 'block';
+
         const btnAgregarCarrito = item.querySelector('.btnAgregarCarrito');
 
         btnAgregarCarrito.addEventListener('click', () => {
@@ -233,4 +240,3 @@ computadoras.forEach((item, index) => {
         });
     });
 });
-

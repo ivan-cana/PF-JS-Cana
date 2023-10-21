@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +11,15 @@
     <!-- JS -->
     <script src="js/main.js" defer></script>
 </head>
-<body>
-    <h1>GameTech Store</h1>
-    
-    <img src="img/computadora.png" alt="computadora" class="computadora">
 
-    <section class="carrito">
+<body>
+    <nav>
+        <img src="img/computadora.png" alt="computadora" class="computadora">
+        <h1>GameTech Store</h1>
         <img src="img/carrito.png" alt="carrito de compras" class="carritoImg">
-        <div class="contenedorCarrito">
-            <!-- <ul class="seccionCarrito"></ul> -->
-        </div>
-    </section>
+    </nav>
+
+    <div class="contenedorCarrito"></div>
 
     <section class="secciones">
         <h2 class="tituloDeLasSecciones">Piezas</h2>
@@ -62,7 +61,8 @@
 
     <section class="secciones">
         <h2 class="tituloDeLasSecciones">Ingresar presupuesto</h2>
-        <p class="descripcion">Ingrese su presupuesto y nosotros le mostraremos las computadoras que mejor se adapten a su presupuesto.</p>
+        <p class="descripcion">Ingrese su presupuesto y nosotros le mostraremos las computadoras que mejor se adapten a
+            su presupuesto.</p>
         <form class="formulario">
             <label class="ingresarPresupuesto" for="presupuesto">Ingrese su presupuesto:</label>
             <input class="campo" type="number" id="presupuesto">
@@ -75,21 +75,23 @@
 
     <section class="secciones">
         <h2 class="tituloDeLasSecciones">Computadoras armadas</h2>
-        <p class="descripcion">Computadoras pre-ensambladas por nostros. Cuenta con sistema operativo ya instalado para que apenas la tenga pueda comenzar a usarla.</p>
+        <p class="descripcion">Computadoras pre-ensambladas por nostros. Cuenta con sistema operativo ya instalado para
+            que apenas la tenga pueda comenzar a usarla.</p>
         <div class="seccionPC">
-            <div class="computadoras" id="1">
+            <div class="computadoras">
                 <img class="imgPc" src="img/pc1.png" alt="Imagen de una pc">
                 <p class="detalles"></p>
             </div>
-            <div class="computadoras" id="2">
+            <div class="computadoras">
                 <img class="imgPc" src="img/pc2.png" alt="Imagen de una pc">
                 <p class="detalles"></p>
             </div>
-            <div class="computadoras" id="3">
+            <div class="computadoras">
                 <img class="imgPc" src="img/pc3.png" alt="Imagen de una pc">
                 <p class="detalles"></p>
             </div>
         </div>
     </section>
 </body>
+
 </html>
