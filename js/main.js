@@ -1,13 +1,41 @@
-let arrayProcesadores = ["1 - i3: $60.000", "2 - i5: $110.000", "3 - i7: $210.000"];
-let arrayPlacaBase = ["1 - H610M: $94.000", "2 - B660M: $112.000", "3 - Z790: $215.000"];
-let arrayMemoriaRam = ["1 - DDR4 4gb: $14.000", "2 - DDR4 8gb: $25.000", "3 - DDR4 16gb: $45.000"];
-let arrayPlacaDeVideo = ["1 - GTX 1650: $150.000", "2 - RTX 2060: $300.000", "3 - RTX 3070: $500.000"];
-let arrayFuenteDePoder = ["1 - 500W: $35.000", "2 - 600W: $45.000", "3 - 700W: $55.000"];
-let arrayAlmacenamiento = ["1 - 1T: $45.000", "2 - 2T: $60.000", "3 - 6T: $130.000"];
-let arrayGabinete = ["1 - Gabinete Antec NX201: $35.000", "2 - Gabinete Antec NX200M: $40.000", "3 - Gabinete Antec NX292: $50.000"];
+let arrayProcesadores = [
+    { img: "../img/i3.png", nombre: "i3", precio: 60000 },
+    { img: "../img/i5.png", nombre: "i5", precio: 110000 },
+    { img: "../img/i7.png", nombre: "i7", precio: 210000 }];
+
+let arrayPlacaBase = [
+    { img: "../img/h610m.png", nombre: "H610M", precio: 94000 },
+    { img: "../img/b660m.png", nombre: "B660M", precio: 112000 },
+    { img: "../img/z790.png", nombre: "Z790", precio: 215000 }];
+
+let arrayMemoriaRam = [
+    { img: "../img/4gb.png", nombre: "DDR4 4gb", precio: 14000 },
+    { img: "../img/8gb.png", nombre: "DDR4 8gb", precio: 25000 },
+    { img: "../img/16gb.png", nombre: "DDR4 16gb", precio: 45000 }];
+
+let arrayPlacaDeVideo = [
+    { img: "../img/gtx1650.png", nombre: "GTX 1650", precio: 150000 },
+    { img: "../img/rtx2060.png", nombre: "RTX 2060", precio: 300000 },
+    { img: "../img/rtx3070.png", nombre: "RTX 3070", precio: 500000 }];
+
+let arrayFuenteDePoder = [
+    { img: "../img/500w.png", nombre: "500w", precio: 35000 },
+    { img: "../img/600w.png", nombre: "600w", precio: 45000 },
+    { img: "../img/700w.png", nombre: "700w", precio: 55000 }];
+
+let arrayAlmacenamiento = [
+    { img: "../img/1tb.png", nombre: "1TB", precio: 45000 },
+    { img: "../img/2tb.png", nombre: "2TB", precio: 60000 },
+    { img: "../img/6tb.png", nombre: "6TB", precio: 130000 }];
+
+let arrayGabinete = [
+    { img: "../img/antecNX201.png", nombre: "Gabinete Antec NX201", precio: 35000 },
+    { img: "../img/antecNX200M.png", nombre: "Gabinete Antec NX200M", precio: 40000 },
+    { img: "../img/antecNX292.png", nombre: "Gabinete Antec NX292", precio: 50000 }];
 
 let pc = [
     {
+        img: "../img/pc1.png",
         nombre: "PC 1",
         procesador: "Ryzen 3 3200g",
         placaBase: "Asus A520",
@@ -19,6 +47,7 @@ let pc = [
         precio: 400000
     },
     {
+        img: "../img/pc2.png",
         nombre: "PC 2",
         procesador: "i3 12100F",
         placaBase: "MSI H610M",
@@ -30,6 +59,7 @@ let pc = [
         precio: 620000
     },
     {
+        img: "../img/pc3.png",
         nombre: "PC 3",
         procesador: "Ryzen 5 7600",
         placaBase: "Gigabyte A620M",
@@ -40,7 +70,17 @@ let pc = [
         gabinete: "Thermaltake TT S200",
         precio: 1000000
     }
-]
+];
+
+function notificacionAgregadoCarrito() {
+    Toastify({
+        text: "Agregado al carrito",
+        duration: 2000,
+        style: {
+            background: "linear-gradient(to right, #535E86, #BAC2DB)",
+        }
+    }).showToast()
+}
 
 // Carrito
 
@@ -51,7 +91,7 @@ let carritoEnLs = localStorage.getItem('carrito');
 carritoEnLs = JSON.parse(carritoEnLs);
 
 function agregarCarrito(a, b) {
-    carrito.push("Producto: " + a + " | " + "Precio: " + b);
+    carrito.push(a + " | " + b);
     localStorage.setItem('carrito', JSON.stringify(carrito));
 };
 
@@ -80,13 +120,23 @@ function mostrarCarrito() {
         }
     }
 
+    let valorTotalCarrito = 0;
+
     if (carritoObtenido.length > 0) {
         carritoObtenido.forEach(function (productoCarrito) {
+            const [nombre, precio] = productoCarrito.split("|").map(item => item.trim());
+            valorTotalCarrito += parseFloat(precio);
             const listadoCarrito = document.createElement('li');
             listadoCarrito.classList.add('listadoCarrito');
-            listadoCarrito.textContent = productoCarrito;
+            listadoCarrito.textContent = `Producto: ${nombre} | Precio: $${precio}`;
             seccionCarrito.appendChild(listadoCarrito);
         });
+
+        const totalCarrito = document.createElement('li');
+        totalCarrito.classList.add('listadoCarrito');
+        totalCarrito.textContent = `Total de la compra: $${valorTotalCarrito}`;
+        seccionCarrito.appendChild(totalCarrito);
+
         btnBorrarCarrito = document.createElement('button');
         btnBorrarCarrito.classList.add('btnBorrarCarrito');
         seccionCarrito.appendChild(btnBorrarCarrito);
@@ -136,8 +186,26 @@ piezas.forEach((pieza) => {
                 break;
         }
 
-        const mostrarPiezas = arrayOpciones.map(opcion => `<p class= "opcionPiezaElejida">${opcion}</p>`).join("");
-        opcionesPieza.innerHTML = mostrarPiezas;
+        opcionesPieza.innerHTML = '';
+        arrayOpciones.forEach((opcion) => {
+            const opcionPieza = document.createElement("li");
+            opcionPieza.classList.add('opcionPieza');
+            opcionPieza.innerHTML = `
+                    <img src="${opcion.img}" alt="${opcion.nombre}" class= "imgOpcionPieza">
+                    <p class= "opcionPiezaDetalle">${opcion.nombre}</p>
+                    <p class= "opcionPiezaDetalle">$${opcion.precio}</p>
+                    <button class= "btnAgregarCarrito">Agregar al carrito</button>
+                `;
+
+            opcionesPieza.appendChild(opcionPieza);
+
+            const btnAgregarCarrito = opcionPieza.querySelector('.btnAgregarCarrito');
+
+            btnAgregarCarrito.addEventListener('click', () => {
+                agregarCarrito(opcion.nombre, opcion.precio)
+                notificacionAgregadoCarrito();
+            });
+        });
     });
 });
 
@@ -154,8 +222,9 @@ function mostrarPcFiltrada(pcs) {
             const pcContenedor = document.createElement('div');
             pcContenedor.classList.add('msgPc');
 
-            const pcTitulo = document.createElement('p');
-            pcTitulo.textContent = 'PC';
+            const pcTitulo = document.createElement('img');
+            pcTitulo.classList.add('imgPc');
+            pcTitulo.src = pc.img;
 
             const pcPrecio = document.createElement('p');
             pcPrecio.textContent = `Precio: $${pc.precio}`;
@@ -178,7 +247,8 @@ function mostrarPcFiltrada(pcs) {
             btnAgregarCarrito.textContent = 'Agregar al carrito';
 
             btnAgregarCarrito.addEventListener('click', () => {
-                agregarCarrito(pc.nombre, pc.precio);
+                agregarCarrito(pc.nombre, pc.precio)
+                notificacionAgregadoCarrito()
             });
 
             pcContenedor.appendChild(btnAgregarCarrito);
@@ -196,10 +266,12 @@ function mostrarPcFiltrada(pcs) {
 function buscarPc(evt) {
     evt.preventDefault();
     let presupuesto = parseInt(document.querySelector('.campo').value);
-    const precioFiltrado = pc.filter(valor => valor.precio <= presupuesto);
-    mostrarPcFiltrada(precioFiltrado);
+    const pcsFiltradas = pc.filter(valor => valor.precio <= presupuesto);
+    pcsFiltradas.sort((a, b) => Math.abs(a.precio - presupuesto) - Math.abs(b.precio - presupuesto));
+    mostrarPcFiltrada(pcsFiltradas.length > 0 ? [pcsFiltradas[0]] : []);
     formulario.reset();
-};
+}
+
 
 formulario.addEventListener('submit', buscarPc);
 
@@ -236,7 +308,8 @@ computadoras.forEach((item, index) => {
         const btnAgregarCarrito = item.querySelector('.btnAgregarCarrito');
 
         btnAgregarCarrito.addEventListener('click', () => {
-            agregarCarrito(pcSeleccionada.nombre, pcSeleccionada.precio);
+            agregarCarrito(pcSeleccionada.nombre, pcSeleccionada.precio)
+            notificacionAgregadoCarrito();
         });
     });
 });
