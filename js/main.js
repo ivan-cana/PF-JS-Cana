@@ -1,76 +1,38 @@
 let arrayProcesadores = [
-    { img: "/img/i3.png", nombre: "i3", precio: 60000 },
-    { img: "/img/i5.png", nombre: "i5", precio: 110000 },
-    { img: "/img/i7.png", nombre: "i7", precio: 210000 }];
+    { img: "./img/i3.png", nombre: "i3", precio: 60000 },
+    { img: "./img/i5.png", nombre: "i5", precio: 110000 },
+    { img: "./img/i7.png", nombre: "i7", precio: 210000 }];
 
 let arrayPlacaBase = [
-    { img: "/img/h610m.png", nombre: "H610M", precio: 94000 },
-    { img: "/img/b660m.png", nombre: "B660M", precio: 112000 },
-    { img: "/img/z790.png", nombre: "Z790", precio: 215000 }];
+    { img: "./img/h610m.png", nombre: "H610M", precio: 94000 },
+    { img: "./img/b660m.png", nombre: "B660M", precio: 112000 },
+    { img: "./img/z790.png", nombre: "Z790", precio: 215000 }];
 
 let arrayMemoriaRam = [
-    { img: "/img/4gb.png", nombre: "DDR4 4gb", precio: 14000 },
-    { img: "/img/8gb.png", nombre: "DDR4 8gb", precio: 25000 },
-    { img: "/img/16gb.png", nombre: "DDR4 16gb", precio: 45000 }];
+    { img: "./img/4gb.png", nombre: "DDR4 4gb", precio: 14000 },
+    { img: "./img/8gb.png", nombre: "DDR4 8gb", precio: 25000 },
+    { img: "./img/16gb.png", nombre: "DDR4 16gb", precio: 45000 }];
 
 let arrayPlacaDeVideo = [
-    { img: "/img/gtx1650.png", nombre: "GTX 1650", precio: 150000 },
-    { img: "/img/rtx2060.png", nombre: "RTX 2060", precio: 300000 },
-    { img: "/img/rtx3070.png", nombre: "RTX 3070", precio: 500000 }];
+    { img: "./img/gtx1650.png", nombre: "GTX 1650", precio: 150000 },
+    { img: "./img/rtx2060.png", nombre: "RTX 2060", precio: 300000 },
+    { img: "./img/rtx3070.png", nombre: "RTX 3070", precio: 500000 }];
 
 let arrayFuenteDePoder = [
-    { img: "/img/500w.png", nombre: "500w", precio: 35000 },
-    { img: "/img/600w.png", nombre: "600w", precio: 45000 },
-    { img: "/img/700w.png", nombre: "700w", precio: 55000 }];
+    { img: "./img/500w.png", nombre: "500w", precio: 35000 },
+    { img: "./img/600w.png", nombre: "600w", precio: 45000 },
+    { img: "./img/700w.png", nombre: "700w", precio: 55000 }];
 
 let arrayAlmacenamiento = [
-    { img: "/img/1tb.png", nombre: "1TB", precio: 45000 },
-    { img: "/img/2tb.png", nombre: "2TB", precio: 60000 },
-    { img: "/img/6tb.png", nombre: "6TB", precio: 130000 }];
+    { img: "./img/1tb.png", nombre: "1TB", precio: 45000 },
+    { img: "./img/2tb.png", nombre: "2TB", precio: 60000 },
+    { img: "./img/6tb.png", nombre: "6TB", precio: 130000 }];
 
 let arrayGabinete = [
-    { img: "/img/antecNX201.png", nombre: "Gabinete Antec NX201", precio: 35000 },
-    { img: "/img/antecNX200M.png", nombre: "Gabinete Antec NX200M", precio: 40000 },
-    { img: "/img/antecNX292.png", nombre: "Gabinete Antec NX292", precio: 50000 }];
+    { img: "./img/antecNX201.png", nombre: "Gabinete Antec NX201", precio: 35000 },
+    { img: "./img/antecNX200M.png", nombre: "Gabinete Antec NX200M", precio: 40000 },
+    { img: "./img/antecNX292.png", nombre: "Gabinete Antec NX292", precio: 50000 }];
 
-let pc = [
-    {
-        img: "/img/pc1.png",
-        nombre: "PC 1",
-        procesador: "Ryzen 3 3200g",
-        placaBase: "Asus A520",
-        memoriaRam: "8gb",
-        placaDeVideo: "No tiene",
-        fuenteDePoder: "550W",
-        almacenamiento: "SSD 480gb",
-        gabinete: "CORSAIR CARBIDE SPEC DELTA",
-        precio: 400000
-    },
-    {
-        img: "/img/pc2.png",
-        nombre: "PC 2",
-        procesador: "i3 12100F",
-        placaBase: "MSI H610M",
-        memoriaRam: "16gb",
-        placaDeVideo: "GTX 1650",
-        fuenteDePoder: "550W",
-        almacenamiento: "SSD 480gb",
-        gabinete: "Gamemax NOVA N6",
-        precio: 620000
-    },
-    {
-        img: "/img/pc3.png",
-        nombre: "PC 3",
-        procesador: "Ryzen 5 7600",
-        placaBase: "Gigabyte A620M",
-        memoriaRam: "16gb",
-        placaDeVideo: "RTX 3060",
-        fuenteDePoder: "700w",
-        almacenamiento: "SSD 960gb",
-        gabinete: "Thermaltake TT S200",
-        precio: 1000000
-    }
-];
 
 function notificacionAgregadoCarrito() {
     Toastify({
@@ -213,6 +175,15 @@ piezas.forEach((pieza) => {
 
 const formulario = document.querySelector('.formulario');
 const pcEncontrada = document.querySelector('#pcEncontrada');
+let dataPc = [];
+
+fetch("./js/computadoras.json")
+    .then(response => response.json())
+    .then(data => {
+        dataPc = data;
+    })
+    .catch(error => console.error('Error al cargar el archivo JSON:', error));
+
 
 function mostrarPcFiltrada(pcs) {
     pcEncontrada.innerHTML = '';
@@ -266,7 +237,7 @@ function mostrarPcFiltrada(pcs) {
 function buscarPc(evt) {
     evt.preventDefault();
     let presupuesto = parseInt(document.querySelector('.campo').value);
-    const pcsFiltradas = pc.filter(valor => valor.precio <= presupuesto);
+    const pcsFiltradas = dataPc.filter(valor => valor.precio <= presupuesto);
     pcsFiltradas.sort((a, b) => Math.abs(a.precio - presupuesto) - Math.abs(b.precio - presupuesto));
     mostrarPcFiltrada(pcsFiltradas.length > 0 ? [pcsFiltradas[0]] : []);
     formulario.reset();
@@ -277,39 +248,79 @@ formulario.addEventListener('submit', buscarPc);
 
 // Seccion Computadoras Armadas
 
-const computadoras = document.querySelectorAll(".computadoras");
-const detalles = document.querySelectorAll(".detalles");
+const seccionPC = document.querySelector('.seccionPC');
 
-computadoras.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        const pcSeleccionada = pc[index];
+const nombreDetalles = {
+    "procesador": "Procesador:",
+    "placaBase": "Placa Base:",
+    "memoriaRam": "Memoria RAM:",
+    "placaDeVideo": "Placa de Video:",
+    "fuenteDePoder": "Fuente de Poder:",
+    "almacenamiento": "Almacenamiento:",
+    "gabinete": "Gabinete:",
+    "precio": "Precio: $"
+}
 
-        detalles.forEach(detalle => {
-            detalle.style.display = 'none';
-        });
+function mostrarDetallesPc(contenedor, detalles) {
+    const listaPrevia = contenedor.querySelector('.listaDetalles');
 
-        const detallesSeleccionados = detalles[index];
+    if (listaPrevia) {
+        contenedor.removeChild(listaPrevia);
+    }
 
-        detallesSeleccionados.innerHTML = `
-            <p>${pcSeleccionada.nombre}</p>
-            <p>Procesador: ${pcSeleccionada.procesador}</p>
-            <p>Placa Base: ${pcSeleccionada.placaBase}</p>
-            <p>Memoria RAM: ${pcSeleccionada.memoriaRam}</p>
-            <p>Placa de Video: ${pcSeleccionada.placaDeVideo}</p>
-            <p>Fuente de Poder: ${pcSeleccionada.fuenteDePoder}</p>
-            <p>Almacenamiento: ${pcSeleccionada.almacenamiento}</p>
-            <p>Gabinete: ${pcSeleccionada.gabinete}</p>
-            <p>Precio: $${pcSeleccionada.precio}</p>
-            <button class= "btnAgregarCarrito">Agregar al carrito</button>
-        `;
+    const ul = document.createElement('ul');
+    ul.classList.add('listaDetalles');
+    contenedor.appendChild(ul);
 
-        detallesSeleccionados.style.display = 'block';
+    for (const key in detalles) {
+        if (detalles.hasOwnProperty(key) && key !== "img" && key !== "nombre") {
+            const li = document.createElement("li");
+            li.classList.add('detalles');
+            const cambioDeNombre = nombreDetalles[key] || key;
+            li.textContent = `${cambioDeNombre} ${detalles[key]}`;
+            ul.appendChild(li);
+        }
+    }
+}
 
-        const btnAgregarCarrito = item.querySelector('.btnAgregarCarrito');
 
-        btnAgregarCarrito.addEventListener('click', () => {
-            agregarCarrito(pcSeleccionada.nombre, pcSeleccionada.precio)
-            notificacionAgregadoCarrito();
+fetch("./js/computadoras.json")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(computadora => {
+            const div = document.createElement('div');
+            div.classList.add('computadoras');
+            seccionPC.appendChild(div);
+
+            const img = document.createElement('img');
+            img.classList.add('imgPc');
+            img.src = computadora.img;
+            div.appendChild(img);
+
+            const p = document.createElement('p');
+            p.classList.add('detalles');
+            p.textContent = computadora.nombre;
+            div.appendChild(p);
+
+            let btnAgregarCarrito;
+
+            div.addEventListener('click', () => {
+                mostrarDetallesPc(div, computadora);
+
+                if (btnAgregarCarrito) {
+                    div.removeChild(btnAgregarCarrito);
+                }
+
+                btnAgregarCarrito = document.createElement('button');
+                btnAgregarCarrito.classList.add('btnAgregarCarrito');
+                btnAgregarCarrito.textContent = 'Agregar al carrito';
+                div.appendChild(btnAgregarCarrito);
+
+                btnAgregarCarrito.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    agregarCarrito(computadora.nombre, computadora.precio);
+                    notificacionAgregadoCarrito();
+                });
+            });
         });
     });
-});

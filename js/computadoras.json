@@ -1,0 +1,74 @@
+[
+    {
+        "img": "./img/Kit-OverTech.png",
+        "nombre": "PC",
+        "procesador": "Ryzen 3 3200g",
+        "placaBase": "Asus A520",
+        "memoriaRam": "8gb",
+        "placaDeVideo": "No tiene",
+        "fuenteDePoder": "500W",
+        "almacenamiento": "SSD 240gb",
+        "gabinete": "Kit OverTech",
+        "precio": 350000
+    },
+    {
+        "img": "./img/Corsair-Carbide-Spec-Delta.png",
+        "nombre": "PC",
+        "procesador": "Ryzen 3 3200g",
+        "placaBase": "Asus A520",
+        "memoriaRam": "8gb",
+        "placaDeVideo": "No tiene",
+        "fuenteDePoder": "550W",
+        "almacenamiento": "SSD 480gb",
+        "gabinete": "Corsair Carbide Spec Delta",
+        "precio": 400000
+    },
+    {
+        "img": "./img/Aureox-Gamer-Sculptor.png",
+        "nombre": "PC",
+        "procesador": "Ryzen 5 4600G",
+        "placaBase": "GIGA A520",
+        "memoriaRam": "16gb",
+        "placaDeVideo": "No tiene",
+        "fuenteDePoder": "550W",
+        "almacenamiento": "SSD 480GB",
+        "gabinete": "Aureox Gamer Sculptor",
+        "precio": 540000
+    },
+    {
+        "img": "./img/Gamemax-NOVA-N6.png",
+        "nombre": "PC",
+        "procesador": "i3 12100F",
+        "placaBase": "MSI H610M",
+        "memoriaRam": "16gb",
+        "placaDeVideo": "GTX 1650",
+        "fuenteDePoder": "550W",
+        "almacenamiento": "SSD 480gb",
+        "gabinete": "Gamemax NOVA N6",
+        "precio": 620000
+    },
+    {
+        "img": "./img/Thermaltake-TT-S200.png",
+        "nombre": "PC",
+        "procesador": "Ryzen 5 7600",
+        "placaBase": "Gigabyte A620M",
+        "memoriaRam": "16gb",
+        "placaDeVideo": "RTX 3060",
+        "fuenteDePoder": "700w",
+        "almacenamiento": "SSD 960gb",
+        "gabinete": "Thermaltake TT S200",
+        "precio": 1000000
+    },
+    {
+        "img": "./img/Thermaltake-AH-S200.png",
+        "nombre": "PC",
+        "procesador": "Ryzen 5 7600 ",
+        "placaBase": "MSI A620M",
+        "memoriaRam": "32GB",
+        "placaDeVideo": "RTX 4060",
+        "fuenteDePoder": "750W",
+        "almacenamiento": "SSD 960gb",
+        "gabinete": "Thermaltake AH S200",
+        "precio": 1400000
+    }
+]
